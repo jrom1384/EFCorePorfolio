@@ -1,0 +1,97 @@
+﻿@using System.Security.Claims;
+@model ApplicationUserVM
+@inject EFCore.ServiceLayer.IAccountService AccountService
+@inject AutoMapper.IMapper Mapper
+@{
+    ViewData["Title"] = "Account Information";
+}
+
+<h1 class="text-primary">Account Information</h1>
+<hr />
+@if(AccountService.IsSignedIn(User))
+{
+    var identityUserID = User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).ToList().FirstOrDefault();
+    if (identityUserID != null)
+    {
+        var applicationUserDto = await AccountService.GetUser(identityUserID.Value);
+        var applicationUser = Mapper.Map<ApplicationUserVM>(applicationUserDto);
+
+        <div>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd class="col-sm-10">
+                    @applicationUser.Email
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </dt>
+                <dd class="col-sm-10">
+                    @applicationUser.FirstName
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
+                <dd class="col-sm-10">
+                    @applicationUser.LastName
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Age)
+                </dt>
+                <dd class="col-sm-10">
+                    @applicationUser.Age
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="UpdateUser" asp-route-id="@applicationUser.Id">Edit</a> |
+            <a asp-action="ChangeUserPassword" asp-route-id="@applicationUser.Id">Change Password</a>
+        </div>
+
+    }
+}
+else if (User.Identity.IsAuthenticated)
+{
+    <div>
+        <dl class="row">
+            <dt class="col-sm-2">
+                Name
+            </dt>
+            <dd class="col-sm-10">
+                @User.Claims.Where(c => c.Type == ClaimTypes.Name).ToList().FirstOrDefault().Value
+            </dd>
+            <dt class="col-sm-2">
+                GivenName
+            </dt>
+            <dd class="col-sm-10">
+                @User.Claims.Where(c => c.Type == ClaimTypes.GivenName).ToList().FirstOrDefault().Value
+            </dd>
+            <dt class="col-sm-2">
+                Surname
+            </dt>
+            <dd class="col-sm-10">
+                @User.Claims.Where(c => c.Type == ClaimTypes.Surname).ToList().FirstOrDefault().Value
+            </dd>
+            <dt class="col-sm-2">
+                Email
+            </dt>
+            <dd class="col-sm-10">
+                @User.Claims.Where(c => c.Type == ClaimTypes.Email).ToList().FirstOrDefault().Value
+            </dd>
+        </dl>
+    </div>
+}
+else
+{
+    <p>User is not signed in</p>
+}
+
+@*@inject SignInManager<ApplicationUser> SignInManager*@
+@*@if (SignInManager.IsSignedIn(User) || User.Identity.IsAuthenticated)
+    {
+        @foreach (var claim in User.Claims)
+        {
+            <p><b>@claim.Type</b> - @claim.Value</p>
+        }
+    }*@

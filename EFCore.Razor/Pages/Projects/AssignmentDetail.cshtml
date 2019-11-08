@@ -1,0 +1,37 @@
+﻿@page
+@model EFCore.Razor.Pages.Projects.AssignmentDetailModel
+@{
+    ViewData["Title"] = "Project";
+}
+
+<h1 class="text-primary">Project / @Model.Assignment.Project / Details </h1>
+<hr />
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Assignment.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Assignment.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Assignment.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Assignment.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Assignment.Role)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Assignment.Role)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./EditAssignment" asp-route-id="@Model.Assignment.Id">Edit</a> |
+    <a asp-page="./Assignments" asp-route-id="@Model.Assignment.Project_Id">Back to List</a>
+</div>
+
+

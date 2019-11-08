@@ -1,0 +1,83 @@
+﻿@model EmployeeVM
+@{
+    ViewData["Title"] = "Employee";
+}
+
+<h1 class="text-primary">Employee / Edit</h1>
+<hr />
+@{
+    if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-warning alert-dismissible fade show">
+            <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Warning!</h4>
+            <p>@ViewBag.ErrorMessage</p>
+            <hr>
+            <p class="mb-0">Once you have filled all the details, click on the 'Save' button to continue or 'Back to List'.</p>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    }
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" class="form-control" type="date" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <select asp-for="Gender" class="form-control" asp-items="@Html.GetEnumSelectList<Gender>()">
+                    <option value="" disabled selected>Select Gender</option>
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Department_Id" class="control-label"></label>
+                <select asp-for="Department_Id" class="form-control" asp-items="@(new SelectList(ViewBag.Departments,"Id","Department", Model.Department_Id))">
+                    <option value="0" disabled selected>Select Department</option>
+                </select>
+                <span asp-validation-for="Department_Id" class="text-danger"></span>
+            </div>
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary" /> |
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+        $(document).ready(() => {
+
+            function trim(input) {
+                var text = input.val();
+                input.val($.trim(text));
+            }
+
+            $('#@Html.IdFor(m => m.FirstName)').on('click mouseleave blur', function () { trim($(this)); })
+            $('#@Html.IdFor(m => m.LastName)').on('click mouseleave blur', function () { trim($(this)); })
+
+        });
+    </script>
+}
+

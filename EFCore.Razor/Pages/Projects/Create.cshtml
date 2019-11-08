@@ -1,0 +1,53 @@
+﻿@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Project";
+}
+
+<h1 class="text-primary">Project / Create</h1>
+<hr />
+@{
+    if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-warning alert-dismissible fade show">
+            <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Warning!</h4>
+            <p>@Model.ErrorMessage</p>
+            <hr>
+            <p class="mb-0">Once you have filled all the details, click on the 'Create' button to continue or 'Back to List'.</p>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    }
+}
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Project.Project" class="control-label"></label>
+                <input asp-for="Project.Project" class="form-control" />
+                <span asp-validation-for="Project.Project" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" /> |
+                <a asp-page="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+            $(document).ready(() =>
+            {
+                function trim(input) {
+                    var text = input.val();
+                    input.val($.trim(text));
+                }
+
+                $('#@Html.IdFor(m => m.Project.Project)').on('click mouseleave blur', function () { trim($(this)); });
+
+            });
+    </script>
+}

@@ -1,0 +1,39 @@
+﻿@model ProjectVM
+@{
+    ViewData["Title"] = "Project";
+}
+
+<h1 class="text-primary">Project / @ViewBag.SaveMode </h1>
+<hr />
+<div class="alert alert-success alert-dismissible fade show">
+    <h4 class="alert-heading"><i class="far fa-check-circle"></i> Success!</h4>
+    <p>@ViewBag.Message</p>
+    <hr>
+    @if (TempData.ContainsKey(TempDataKeys.SaveMode) && (SaveMode)Convert.ToInt32(TempData[TempDataKeys.SaveMode]) == SaveMode.Delete)
+    {
+        <p class="mb-0">Click 'Back to List'.</p>
+    }
+    else
+    {
+        <p class="mb-0">To modify click the 'Edit' button or 'Back to List'.</p>
+    }
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+</div>
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Project)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Project)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    @if (TempData.ContainsKey(TempDataKeys.SaveMode) && (SaveMode)Convert.ToInt32(TempData[TempDataKeys.SaveMode]) != SaveMode.Delete)
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> <text>|</text>
+    }
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,186 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<h1 class="text-primary">Employees</h1>
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <small>
+                Name
+            </small>
+        </div>
+        <div class="form-group col-md-2">
+            <small>
+                @Html.DisplayNameFor(model => model.GenericPage.PaginatedList.Items.First().Gender)
+            </small>
+        </div>
+        <div class="form-group col-md-2">
+            <small>
+                @Html.DisplayNameFor(model => model.GenericPage.PaginatedList.Items.First().IsActive)
+            </small>
+        </div>
+        <div class="form-group col-md-3">
+            <small>
+                @Html.DisplayNameFor(model => model.GenericPage.PaginatedList.Items.First().Department)
+            </small>
+        </div>
+        <div class="form-group col-md-2">
+        </div>
+
+        <div class="form-group col-md-3">
+            <input class="form-control" asp-for="@Model.GenericPage.SearchString" type="text" value="@Model.GenericPage.SearchString" />
+        </div>
+        <div class="form-group col-md-2">
+            <select asp-for="Gender" class="form-control" asp-items="Html.GetEnumSelectList<Gender>()">
+                <option value="null" selected>- All -</option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <select asp-for="IsActive" class="form-control">
+                <option value="null">- All - </option>
+                <option value="true">Active</option>
+                <option value="false">Inactive</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3">
+            <select asp-for="Department_Id" class="form-control" asp-items="@(new SelectList(Model.Departments,"Id","Department", Model.Department_Id))">
+                <option value="0">- All - </option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <input type="submit" class="btn btn-secondary btn-sm" value="Search" />
+            <a asp-page="./Index" class="btn btn-secondary btn-sm">Reset</a>
+        </div>
+    </div>
+</form>
+
+@{
+    var headerRouteData = new Dictionary<string, string>()
+    {
+        { "SearchString", Model.GenericPage.SearchString },
+        { "Department_Id", Model.Department_Id.ToString()},
+        { "Gender", Model.Gender.ToString()},
+        { "IsActive", Model.IsActive.ToString()},
+
+        { "PreviousSortField", Model.GenericPage.SortField },
+        { "SortOrder", Model.GenericPage.SortOrder.ToString() },
+        { "CurrentPageIndex", Model.GenericPage.CurrentPageIndex.ToString() },
+        { "IsHeaderClicked", true.ToString() }
+    };
+
+    var sequence = 1;
+}
+<table class="table table-hover border-bottom">
+    <thead>
+        <tr>
+            <th><a href="#">#</a></th>
+            <th>
+                <a asp-all-route-data="@headerRouteData" asp-route-SortField="Name">
+                    Name
+                </a>
+            </th>
+            <th>
+                <a asp-all-route-data="@headerRouteData" asp-route-SortField="DateOfBirth">
+                    @Html.DisplayNameFor(model => model.GenericPage.PaginatedList.Items.First().DateOfBirth)
+                </a>
+            </th>
+            <th>
+                <a asp-all-route-data="@headerRouteData" asp-route-SortField="Gender">
+                    @Html.DisplayNameFor(model => model.GenericPage.PaginatedList.Items.First().Gender)
+                </a>
+            </th>
+            <th>
+                <a asp-all-route-data="@headerRouteData" asp-route-SortField="IsActive">
+                    @Html.DisplayNameFor(model => model.GenericPage.PaginatedList.Items.First().IsActive)
+                </a>
+            </th>
+            <th>
+                <a asp-all-route-data="@headerRouteData" asp-route-SortField="Department">
+                    @Html.DisplayNameFor(model => model.GenericPage.PaginatedList.Items.First().Department)
+                </a>
+            </th>
+            <th>
+                <a asp-page="Create" class="text-primary"><i class="far fa-plus-square"></i>  Create New</a>
+                @{
+                    if (Model.GenericPage.PaginatedList.MatchCount > Model.GenericPage.PaginatedList.PageSize)
+                    {
+                        <h6 class="text-dark float-lg-right small">Page @Model.GenericPage.CurrentPageIndex of @Model.GenericPage.PaginatedList.TotalPages</h6>
+                    }
+                }
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.GenericPage.PaginatedList.Items)
+        {
+            <tr @(!item.IsActive ? "class=text-muted" : "")>
+                <td>
+                    @(((Model.GenericPage.CurrentPageIndex - 1) * Model.GenericPage.PaginatedList.PageSize) + sequence++)
+                </td>
+                <td>
+                    <i class="fas fa-user"></i>
+                    @Html.DisplayFor(modelItem => item.LastName),  @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td>
+                    <i class="far fa-building"></i>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.Id" class="small">Details</a> |
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="small">Edit</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id" class="small">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+
+    var pageNavigationRouteData = new Dictionary<string, string>()
+    {
+        { "SearchString", Model.GenericPage.SearchString },
+        { "Department_Id", Model.Department_Id.ToString()},
+        { "Gender", Model.Gender.ToString()},
+        { "IsActive", Model.IsActive.ToString()},
+
+        { "SortField", Model.GenericPage.SortField },
+        { "PreviousSortField", Model.GenericPage.PreviousSortField },
+        { "SortOrder", Model.GenericPage.SortOrder.ToString() },
+    };
+
+    <vc:paging route-Data="pageNavigationRouteData"
+           current-page-index="Model.GenericPage.CurrentPageIndex"
+           page-index-view-limit="Model.GenericPage.PaginatedList.PageIndexViewLimit"
+           match-count="Model.GenericPage.PaginatedList.MatchCount"
+           has-next-page="Model.GenericPage.PaginatedList.HasNextPage"
+           has-previous-page="Model.GenericPage.PaginatedList.HasPreviousPage"
+           total-pages="Model.GenericPage.PaginatedList.TotalPages"
+           page-size="Model.GenericPage.PaginatedList.PageSize"></vc:paging>
+}
+
+@section Scripts{
+    <script>
+            $(document).ready(() =>
+            {
+                function trim(input) {
+                    var text = input.val();
+                    input.val($.trim(text));
+                }
+
+                $('#@Html.IdFor(m => m.GenericPage.SearchString)').on('click mouseleave blur', function () { trim($(this)); });
+            });
+    </script>
+}

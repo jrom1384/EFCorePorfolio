@@ -1,0 +1,8 @@
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.Utilities\bin\Debug\netcoreapp3.0\EFCore.Utilities.deps.json
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.Utilities\bin\Debug\netcoreapp3.0\EFCore.Utilities.dll
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.Utilities\bin\Debug\netcoreapp3.0\EFCore.Utilities.pdb
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.Utilities\obj\Debug\netcoreapp3.0\EFCore.Utilities.csprojAssemblyReference.cache
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.Utilities\obj\Debug\netcoreapp3.0\EFCore.Utilities.AssemblyInfoInputs.cache
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.Utilities\obj\Debug\netcoreapp3.0\EFCore.Utilities.AssemblyInfo.cs
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.Utilities\obj\Debug\netcoreapp3.0\EFCore.Utilities.dll
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.Utilities\obj\Debug\netcoreapp3.0\EFCore.Utilities.pdb

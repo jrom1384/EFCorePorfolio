@@ -1,0 +1,51 @@
+﻿@model RoleVM
+@{
+    ViewData["Title"] = "Role";
+}
+
+<h1 class="text-primary">Role / Create</h1>
+<hr />
+@{
+    if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="alert alert-warning alert-dismissible fade show">
+            <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Warning!</h4>
+            <p>@ViewBag.ErrorMessage</p>
+            <hr>
+            <p class="mb-0">Once you have filled all the details, click on the 'Create' button to continue or 'Back to List'.</p>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    }
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Role" class="control-label"></label>
+                <input asp-for="Role" class="form-control" />
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" /> |
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+            $(document).ready(() =>
+            {
+                function trim(input) {
+                    var text = input.val();
+                    input.val($.trim(text));
+                }
+
+                $('#@Html.IdFor(m => m.Role)').on('click mouseleave blur', function () { trim($(this)); });
+
+            });
+    </script>
+}

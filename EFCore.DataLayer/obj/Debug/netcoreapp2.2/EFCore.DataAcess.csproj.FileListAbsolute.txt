@@ -1,0 +1,12 @@
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.DataAcess\bin\Debug\netcoreapp2.2\EFCore.DataAcess.deps.json
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.DataAcess\bin\Debug\netcoreapp2.2\EFCore.DataAcess.dll
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.DataAcess\obj\Debug\netcoreapp2.2\EFCore.DataAcess.csproj.CoreCompileInputs.cache
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.DataAcess\obj\Debug\netcoreapp2.2\EFCore.DataAcess.AssemblyInfoInputs.cache
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.DataAcess\obj\Debug\netcoreapp2.2\EFCore.DataAcess.AssemblyInfo.cs
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.DataAcess\bin\Debug\netcoreapp2.2\EFCore.DataAcess.pdb
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.DataAcess\bin\Debug\netcoreapp2.2\EFCore.Common.dll
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.DataAcess\bin\Debug\netcoreapp2.2\EFCore.Common.pdb
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.DataAcess\obj\Debug\netcoreapp2.2\EFCore.DataAcess.csprojAssemblyReference.cache
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.DataAcess\obj\Debug\netcoreapp2.2\EFCore.DataAcess.csproj.CopyComplete
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.DataAcess\obj\Debug\netcoreapp2.2\EFCore.DataAcess.dll
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.DataAcess\obj\Debug\netcoreapp2.2\EFCore.DataAcess.pdb

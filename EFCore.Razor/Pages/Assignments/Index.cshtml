@@ -1,0 +1,177 @@
+﻿@page
+@model EFCore.Razor.Pages.Assignments.IndexModel
+@{
+    ViewData["Title"] = "Assignments";
+}
+
+<h1 class="text-primary">Assignments</h1>
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <small>
+                Name
+            </small>
+        </div>
+        <div class="form-group col-md-3">
+            <small>
+                @Html.DisplayNameFor(model => model.GenericPage.PaginatedList.Items.First().Department)
+            </small>
+        </div>
+        <div class="form-group col-md-2">
+            <small>
+                @Html.DisplayNameFor(model => model.GenericPage.PaginatedList.Items.First().Role)
+            </small>
+        </div>
+        <div class="form-group col-md-2">
+            <small>
+                @Html.DisplayNameFor(model => model.GenericPage.PaginatedList.Items.First().Project)
+            </small>
+        </div>
+        <div class="form-group col-md-2">
+        </div>
+
+        <div class="form-group col-md-3">
+            <input type="text" asp-for="@Model.GenericPage.SearchString" value="@Model.GenericPage.SearchString" class="form-control" />
+        </div>
+        <div class="form-group col-md-3">
+            <select asp-for="Department_Id" class="form-control" asp-items="@(new SelectList(Model.Departments, "Id", "Department", Model.Department_Id))">
+                <option value="0">- All - </option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <select asp-for="Role_Id" class="form-control" asp-items="@(new SelectList(Model.Roles, "Id", "Role", Model.Role_Id))">
+                <option value="0">- All - </option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <select asp-for="Project_Id" class="form-control" asp-items="@(new SelectList(Model.Projects, "Id", "Project", Model.Project_Id))">
+                <option value="0">- All - </option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <input type="submit" class="btn btn-secondary btn-sm" value="Search" />
+            <a asp-page="./Index" class="btn btn-secondary btn-sm">Reset</a>
+        </div>
+    </div>
+</form>
+
+@{
+    var headerRouteData = new Dictionary<string, string>
+    {
+        { "SearchString", Model.GenericPage.SearchString },
+        { "Department_Id", Model.Department_Id.ToString()},
+        { "Role_Id", Model.Role_Id.ToString()},
+        { "Project_Id", Model.Project_Id.ToString()},
+
+        { "PreviousSortField", Model.GenericPage.SortField},
+        { "SortOrder", Model.GenericPage.SortOrder.ToString() },
+        { "CurrentPageIndex", Model.GenericPage.CurrentPageIndex.ToString() },
+        { "IsHeaderClicked", true.ToString() },
+    };
+
+    var sequence = 1;
+}
+
+<table class="table table-hover border-bottom">
+    <thead>
+        <tr>
+            <th>
+                <a href="#">#</a>
+            </th>
+            <th>
+                <a asp-all-route-data="@headerRouteData" asp-route-SortField="Name">
+                    Name
+                </a>
+            </th>
+            <th>
+                <a asp-all-route-data="@headerRouteData" asp-route-SortField="Department">
+                    @Html.DisplayNameFor(model => model.GenericPage.PaginatedList.Items.First().Department)
+                </a>
+            </th>
+            <th>
+                <a asp-all-route-data="@headerRouteData" asp-route-SortField="Role">
+                    @Html.DisplayNameFor(model => model.GenericPage.PaginatedList.Items.First().Role)
+                </a>
+            </th>
+            <th>
+                <a asp-all-route-data="@headerRouteData" asp-route-SortField="Project">
+                    @Html.DisplayNameFor(model => model.GenericPage.PaginatedList.Items.First().Project)
+                </a>
+            </th>
+            <th>
+                @{
+                    if (Model.GenericPage.PaginatedList.MatchCount > Model.GenericPage.PaginatedList.PageSize)
+                    {
+                        <h6 class="text-dark float-lg-right small">Page @Model.GenericPage.CurrentPageIndex of @Model.GenericPage.PaginatedList.TotalPages</h6>
+                    }
+                }
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.GenericPage.PaginatedList.Items)
+        {
+            <tr>
+                <td>
+                    @(((Model.GenericPage.CurrentPageIndex - 1) * Model.GenericPage.PaginatedList.PageSize) + sequence++)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>*@
+                <td>
+                    <i class="fas fa-user-check"></i>
+                    @Html.DisplayFor(modelItem => item.LastName),  @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Project)
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+
+    var pageNavigationRouteData = new Dictionary<string, string>()
+    {
+        { "SearchString", Model.GenericPage.SearchString },
+        { "Department_Id", Model.Department_Id.ToString()},
+        { "Role_Id", Model.Role_Id.ToString()},
+        { "Project_Id", Model.Project_Id.ToString()},
+
+        { "SortField", Model.GenericPage.SortField },
+        { "PreviousSortField", Model.GenericPage.PreviousSortField },
+        { "SortOrder", Model.GenericPage.SortOrder.ToString() },
+    };
+
+    <vc:paging route-Data="pageNavigationRouteData"
+           current-page-index="Model.GenericPage.CurrentPageIndex"
+           page-index-view-limit="Model.GenericPage.PaginatedList.PageIndexViewLimit"
+           match-count="Model.GenericPage.PaginatedList.MatchCount"
+           has-next-page="Model.GenericPage.PaginatedList.HasNextPage"
+           has-previous-page="Model.GenericPage.PaginatedList.HasPreviousPage"
+           total-pages="Model.GenericPage.PaginatedList.TotalPages"
+           page-size="Model.GenericPage.PaginatedList.PageSize"></vc:paging>
+
+}
+
+@section Scripts{
+    <script>
+            $(document).ready(() =>
+            {
+                function trim(input) {
+                    var text = input.val();
+                    input.val($.trim(text));
+                }
+
+                $('#@Html.IdFor(m => m.GenericPage.SearchString)').on('click mouseleave blur', function () { trim($(this)); });
+            });
+    </script>
+}

@@ -1,0 +1,46 @@
+﻿@model ApplicationUserVM
+@{
+    ViewData["Title"] = "Account Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-primary">Account Information / Edit </h1>
+<hr />
+<div class="alert alert-success alert-dismissible fade show">
+    <h4 class="alert-heading"><i class="far fa-check-circle"></i> Success!</h4>
+    <p>Successfully saved Account Information.</p>
+    <hr>
+    <p class="mb-0">Click 'Back to Account Information'.</p>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+</div>
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="UserInfo">Back to Account Information</a>
+</div>

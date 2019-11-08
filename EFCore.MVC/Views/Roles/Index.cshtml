@@ -1,0 +1,106 @@
+﻿@model GenericPage<RoleVM>
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<h1 class="text-primary">Roles</h1>
+
+<form asp-action="Index">
+    <div class="form-row">
+        <div class="form-group col-md-8">
+            <input type="text" asp-for="@Model.SearchString" value="@Model.SearchString" class="form-control" />
+        </div>
+        <div class="form-group col-md-2">
+            <input type="submit" value="Search" class="btn btn-secondary btn-sm" />
+            <a asp-action="Index" class="btn btn-secondary btn-sm">Reset</a>
+        </div>
+    </div>
+</form>
+
+@{
+    var headerRouteData = new Dictionary<string, string>
+    {
+        { "SearchString", Model.SearchString },
+        { "PreviousSortField", Model.PreviousSortField },
+        { "SortOrder", Model.SortOrder.ToString() },
+        { "CurrentPageIndex", Model.CurrentPageIndex.ToString() },
+        { "IsHeaderClicked", true.ToString() }
+    };
+
+    var sequence = 1;
+}
+<table class="table table-hover border-bottom">
+    <thead>
+        <tr>
+            <th><a href="#">#</a></th>
+            <th>
+                <a asp-action="Index" asp-all-route-data="@headerRouteData" asp-route-SortField="Role">
+                    @Html.DisplayNameFor(model => model.PaginatedList.Items.First().Role)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Create" class="text-primary"><i class="far fa-plus-square"></i>  Create New</a>
+                @{
+                    if (Model.PaginatedList.MatchCount > Model.PaginatedList.PageSize)
+                    {
+                        <h6 class="text-dark float-right small">Page @Model.CurrentPageIndex of @Model.PaginatedList.TotalPages</h6>
+                    }
+                }
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PaginatedList.Items)
+        {
+        <tr>
+            <td>
+                @(((Model.CurrentPageIndex - 1) * Model.PaginatedList.PageSize) + sequence++)
+            </td>
+            <td>
+                <i class="fas fa-user-circle"></i>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id" class="small">Details</a> |
+                <a asp-action="Edit" asp-route-id="@item.Id" class="small">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="small">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var pageNavigationRouteData = new Dictionary<string, string>()
+    {
+        { "SearchString", Model.SearchString },
+        { "SortField", Model.SortField },
+        { "PreviousSortField", Model.PreviousSortField },
+        { "SortOrder", Model.SortOrder.ToString() },
+    };
+
+    <vc:paging action="Index"
+           route-Data="pageNavigationRouteData"
+           current-page-index="Model.CurrentPageIndex"
+           page-index-view-limit="Model.PaginatedList.PageIndexViewLimit"
+           match-count="Model.PaginatedList.MatchCount"
+           has-next-page="Model.PaginatedList.HasNextPage"
+           has-previous-page="Model.PaginatedList.HasPreviousPage"
+           total-pages="Model.PaginatedList.TotalPages"
+           page-size="Model.PaginatedList.PageSize"></vc:paging>
+
+}
+
+@section Scripts{
+    <script>
+            $(document).ready(() =>
+            {
+                function trim(input) {
+                    var text = input.val();
+                    input.val($.trim(text));
+                }
+
+                $('#@Html.IdFor(m => m.SearchString)').on('click mouseleave blur', function () { trim($(this)); });
+            });
+    </script>
+}

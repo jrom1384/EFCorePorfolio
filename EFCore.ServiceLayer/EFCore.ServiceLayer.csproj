@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Authors>Jerome Dulay Bautista</Authors>
+    <Description>Business Logic, accesses from DataAccessLayer and pass data to DTOs. Holds most of all data validation. It is recommended to deploy ServiceLayer and DataLayer on the same server.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="2.2.0" />
+    <PackageReference Include="Serilog" Version="2.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EFCore.Common\EFCore.Common.csproj" />
+    <ProjectReference Include="..\EFCore.DataLayer\EFCore.DataLayer.csproj" />
+    <ProjectReference Include="..\EFCore.DTO\EFCore.DTO.csproj" />
+    <ProjectReference Include="..\EFCore.Utilities\EFCore.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>

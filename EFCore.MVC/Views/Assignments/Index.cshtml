@@ -1,0 +1,173 @@
+﻿@model AssignmentPageFilterVM
+@{
+    ViewData["Title"] = "Assignments";
+}
+
+<h1 class="text-primary">Assignments</h1>
+<form asp-action="Index">
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <small>
+                Name
+            </small>
+        </div>
+        <div class="form-group col-md-3">
+            <small>
+                @Html.DisplayNameFor(model => model.PaginatedList.Items.First().Department)
+            </small>
+        </div>
+        <div class="form-group col-md-2">
+            <small>
+                @Html.DisplayNameFor(model => model.PaginatedList.Items.First().Role)
+            </small>
+        </div>
+        <div class="form-group col-md-2">
+            <small>
+                @Html.DisplayNameFor(model => model.PaginatedList.Items.First().Project)
+            </small>
+        </div>
+        <div class="form-group col-md-2">
+        </div>
+
+        <div class="form-group col-md-3">
+            <input type="text" asp-for="@Model.SearchString" value="@Model.SearchString" class="form-control" />
+        </div>
+        <div class="form-group col-md-3">
+            <select asp-for="Department_Id" class="form-control" asp-items="@(new SelectList(ViewBag.Departments, "Id", "Department", Model.Department_Id))">
+                <option value="0">- All - </option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <select asp-for="Role_Id" class="form-control" asp-items="@(new SelectList(ViewBag.Roles, "Id", "Role", Model.Role_Id))">
+                <option value="0">- All - </option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <select asp-for="Project_Id" class="form-control" asp-items="@(new SelectList(ViewBag.Projects, "Id", "Project", Model.Project_Id))">
+                <option value="0">- All - </option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <input type="submit" class="btn btn-secondary btn-sm" value="Search" />
+            <a asp-action="Index" class="btn btn-secondary btn-sm">Reset</a>
+        </div>
+    </div>
+</form>
+
+@{
+    var headerRouteData = new Dictionary<string, string>
+    {
+        { "SearchString", Model.SearchString },
+        { "Department_Id", Model.Department_Id.ToString()},
+        { "Role_Id", Model.Role_Id.ToString()},
+        { "Project_Id", Model.Project_Id.ToString()},
+
+        { "PreviousSortField", Model.PreviousSortField},
+        { "SortOrder", Model.SortOrder.ToString() },
+        { "CurrentPageIndex", Model.CurrentPageIndex.ToString() },
+        { "IsHeaderClicked", true.ToString() },
+    };
+
+    var sequence = 1;
+}
+<table class="table table-hover border-bottom">
+    <thead>
+        <tr>
+            <th>
+                <a href="#">#</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-all-route-data="@headerRouteData" asp-route-SortField="Name">
+                    Name
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-all-route-data="@headerRouteData" asp-route-SortField="Department">
+                    @Html.DisplayNameFor(model => model.PaginatedList.Items.First().Department)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-all-route-data="@headerRouteData" asp-route-SortField="Role">
+                    @Html.DisplayNameFor(model => model.PaginatedList.Items.First().Role)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-all-route-data="@headerRouteData" asp-route-SortField="Project">
+                    @Html.DisplayNameFor(model => model.PaginatedList.Items.First().Project)
+                </a>
+            </th>
+            <th>
+                @{
+                    if (Model.PaginatedList.MatchCount > Model.PaginatedList.PageSize)
+                    {
+                        <h6 class="text-dark float-lg-right small">Page @Model.CurrentPageIndex of @Model.PaginatedList.TotalPages</h6>
+                    }
+                }
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PaginatedList.Items)
+        {
+        <tr>
+            <td>
+                @(((Model.CurrentPageIndex - 1) * Model.PaginatedList.PageSize) + sequence++)
+            </td>
+            <td>
+                <i class="fas fa-user-check"></i>
+                @Html.DisplayFor(modelItem => item.LastName),  @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project)
+            </td>
+            <td>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@{
+
+    var pageNavigationRouteData = new Dictionary<string, string>()
+    {
+        { "SearchString", Model.SearchString },
+        { "Department_Id", Model.Department_Id.ToString()},
+        { "Role_Id", Model.Role_Id.ToString()},
+        { "Project_Id", Model.Project_Id.ToString()},
+
+        { "SortField", Model.SortField },
+        { "PreviousSortField", Model.PreviousSortField },
+        { "SortOrder", Model.SortOrder.ToString() },
+    };
+
+    <vc:paging action="Index" 
+           route-Data="pageNavigationRouteData"
+           current-page-index="Model.CurrentPageIndex"
+           page-index-view-limit="Model.PaginatedList.PageIndexViewLimit"
+           match-count="Model.PaginatedList.MatchCount"
+           has-next-page="Model.PaginatedList.HasNextPage"
+           has-previous-page="Model.PaginatedList.HasPreviousPage"
+           total-pages="Model.PaginatedList.TotalPages"
+           page-size="Model.PaginatedList.PageSize"></vc:paging>
+
+}
+
+@section Scripts{
+    <script>
+            $(document).ready(() =>
+            {
+                function trim(input) {
+                    var text = input.val();
+                    input.val($.trim(text));
+                }
+
+                $('#@Html.IdFor(m => m.SearchString)').on('click mouseleave blur', function () { trim($(this)); });
+            });
+    </script>
+}

@@ -1,0 +1,57 @@
+﻿@page
+@model EFCore.Razor.Pages.Projects.DeleteAssignmentModel
+@{
+    ViewData["Title"] = "Project";
+}
+
+<h1 class="text-primary">Project / @Model.Assignment.Project / Delete </h1>
+<hr />
+@{
+    if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-warning alert-dismissible fade show">
+            <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Warning!</h4>
+            <p> @Model.ErrorMessage</p>
+            <hr>
+            <p class="mb-0">Click 'Back to List' link.</p>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    }
+    else
+    {
+        <h3>Are you sure you want to delete this?</h3>
+        <br />
+    }
+}
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Assignment.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Assignment.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Assignment.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Assignment.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Assignment.Role)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Assignment.Role)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Assignment.Id" />
+        @if (string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <input type="submit" value="Delete" class="btn btn-danger" /> <text>|</text>
+        }
+        <a asp-page="./Assignments" asp-route-id="@Model.Assignment.Project_Id">Back to List</a>
+    </form>
+</div>
+

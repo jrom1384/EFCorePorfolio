@@ -1,0 +1,142 @@
+﻿@model AssignmentPageFilterVM
+@{
+    ViewData["Title"] = "Project";
+}
+
+<h1 class="text-primary">Project / @ViewBag.Project</h1>
+<form asp-action="Assignments">
+    <div class="form-row">
+        <div class="form-group col-md-7">
+            <small>
+                Name
+            </small>
+        </div>
+        <div class="form-group col-md-3">
+            <small>
+                @Html.DisplayNameFor(model => model.PaginatedList.Items.First().Role)
+            </small>
+        </div>
+        <div class="form-group col-md-2">
+        </div>
+
+        <div class="form-group col-md-7">
+            <input type="text" asp-for="@Model.SearchString" value="@Model.SearchString" class="form-control" />
+        </div>
+        <div class="form-group col-md-3">
+            <select asp-for="Role_Id" class="form-control" asp-items="@(new SelectList(ViewBag.Roles, "Id", "Role", Model.Role_Id))">
+                <option value="0">- All - </option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <input type="submit" class="btn btn-secondary btn-sm" value="Search" />
+            <a asp-action="Assignments" class="btn btn-secondary btn-sm">Reset</a>
+        </div>
+    </div>
+</form>
+
+@{
+    var headerRouteData = new Dictionary<string, string>
+    {
+        { "SearchString", Model.SearchString },
+        { "Project_Id", Model.Project_Id.ToString()},
+        { "Role_Id", Model.Role_Id.ToString()},
+
+        { "PreviousSortField", Model.PreviousSortField},
+        { "SortOrder", Model.SortOrder.ToString() },
+        { "CurrentPageIndex", Model.CurrentPageIndex.ToString() },
+        { "IsHeaderClicked", true.ToString() },
+    };
+
+    var sequence = 1;
+}
+<table class="table table-hover border-bottom">
+    <thead>
+        <tr>
+            <th>
+                <a href="#">#</a>
+            </th>
+            <th>
+                <a asp-action="Assignments" asp-all-route-data="@headerRouteData" asp-route-SortField="Name">
+                    Name
+                </a>
+            </th>
+            <th>
+                <a asp-action="Assignments" asp-all-route-data="@headerRouteData" asp-route-SortField="Role">
+                    @Html.DisplayNameFor(model => model.PaginatedList.Items.First().Role)
+                </a>
+            </th>
+            <th>
+                <a asp-action="CreateAssignment" asp-route-id="@ViewBag.Project_Id" class="text-primary"><i class="far fa-plus-square"></i>  Assign</a>
+                @{
+                    if (Model.PaginatedList.MatchCount > Model.PaginatedList.PageSize)
+                    {
+                        <h6 class="text-dark float-lg-right small">Page @Model.CurrentPageIndex of @Model.PaginatedList.TotalPages</h6>
+                    }
+                }
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PaginatedList.Items)
+        {
+            <tr>
+                <td>
+                    @(((Model.CurrentPageIndex - 1) * Model.PaginatedList.PageSize) + sequence++)
+                </td>
+                <td>
+                    <i class="fas fa-user-check"></i>
+                    @Html.DisplayFor(modelItem => item.LastName),  @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    <a asp-action="AssignmentDetail" asp-route-id="@item.Id" class="small">Details</a> |
+                    <a asp-action="EditAssignment" asp-route-id="@item.Id" class="small">Edit</a> |
+                    <a asp-action="DeleteAssignment" asp-route-id="@item.Id" class="small">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+
+    var pageNavigationRouteData = new Dictionary<string, string>()
+    {
+        { "SearchString", Model.SearchString },
+        { "Project_Id", Model.Project_Id.ToString()},
+        { "Role_Id", Model.Role_Id.ToString()},
+
+        { "SortField", Model.SortField },
+        { "PreviousSortField", Model.PreviousSortField },
+        { "SortOrder", Model.SortOrder.ToString() },
+    };
+
+<vc:paging action="Assignments" 
+           route-Data="pageNavigationRouteData"
+           current-page-index="Model.CurrentPageIndex"
+           page-index-view-limit="Model.PaginatedList.PageIndexViewLimit"
+           match-count="Model.PaginatedList.MatchCount"
+           has-next-page="Model.PaginatedList.HasNextPage"
+           has-previous-page="Model.PaginatedList.HasPreviousPage"
+           total-pages="Model.PaginatedList.TotalPages"
+           page-size="Model.PaginatedList.PageSize"></vc:paging>
+
+}
+
+<br />
+<a asp-action="Index">Back to List</a>
+
+@section Scripts{
+    <script>
+            $(document).ready(() =>
+            {
+                function trim(input) {
+                    var text = input.val();
+                    input.val($.trim(text));
+                }
+
+                $('#@Html.IdFor(m => m.SearchString)').on('click mouseleave blur', function () { trim($(this)); });
+            });
+    </script>
+}

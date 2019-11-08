@@ -1,0 +1,43 @@
+﻿@model RoleVM
+@{
+    ViewData["Title"] = "Role";
+}
+
+<h1 class="text-primary">Role / Delete</h1>
+<hr />
+@{
+    if (TempData.Keys.Contains(TempDataKeys.ErrorMessage))
+    {
+        <div class="alert alert-warning alert-dismissible fade show">
+            <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Warning!</h4>
+            <p> @TempData[TempDataKeys.ErrorMessage]</p>
+            <hr>
+            <p class="mb-0">Click 'Back to List' link.</p>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    }
+    else
+    {
+        <h3>Are you sure you want to delete this?</h3>
+        <br />
+    }
+}
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        @if (!TempData.Keys.Contains(TempDataKeys.ErrorMessage))
+        {
+            <input type="submit" value="Delete" class="btn btn-danger" /> <text>|</text>
+        }
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

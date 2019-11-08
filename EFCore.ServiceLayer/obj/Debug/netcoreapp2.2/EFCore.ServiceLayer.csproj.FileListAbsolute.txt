@@ -1,0 +1,17 @@
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.ServiceLayer\bin\Debug\netcoreapp2.2\EFCore.ServiceLayer.deps.json
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.ServiceLayer\bin\Debug\netcoreapp2.2\EFCore.ServiceLayer.dll
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.ServiceLayer\bin\Debug\netcoreapp2.2\EFCore.ServiceLayer.pdb
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.ServiceLayer\bin\Debug\netcoreapp2.2\EFCore.Common.dll
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.ServiceLayer\bin\Debug\netcoreapp2.2\EFCore.DataLayer.dll
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.ServiceLayer\bin\Debug\netcoreapp2.2\EFCore.DTO.dll
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.ServiceLayer\bin\Debug\netcoreapp2.2\EFCore.Utilities.dll
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.ServiceLayer\bin\Debug\netcoreapp2.2\EFCore.Common.pdb
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.ServiceLayer\bin\Debug\netcoreapp2.2\EFCore.DataLayer.pdb
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.ServiceLayer\bin\Debug\netcoreapp2.2\EFCore.DTO.pdb
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.ServiceLayer\bin\Debug\netcoreapp2.2\EFCore.Utilities.pdb
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.ServiceLayer\obj\Debug\netcoreapp2.2\EFCore.ServiceLayer.csprojAssemblyReference.cache
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.ServiceLayer\obj\Debug\netcoreapp2.2\EFCore.ServiceLayer.AssemblyInfoInputs.cache
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.ServiceLayer\obj\Debug\netcoreapp2.2\EFCore.ServiceLayer.AssemblyInfo.cs
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.ServiceLayer\obj\Debug\netcoreapp2.2\EFCore.ServiceLayer.csproj.CopyComplete
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.ServiceLayer\obj\Debug\netcoreapp2.2\EFCore.ServiceLayer.dll
+C:\Users\jrom1384\source\repos\EFCoreTraining\EFCore.ServiceLayer\obj\Debug\netcoreapp2.2\EFCore.ServiceLayer.pdb

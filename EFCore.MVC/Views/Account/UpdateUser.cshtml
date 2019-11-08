@@ -1,0 +1,59 @@
+﻿@model ApplicationUserVM
+@{
+    ViewData["Title"] = "Account Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-primary">Account Information / Edit</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdateUser" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" readonly="readonly" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary" /> |
+                <a asp-controller="Account" asp-action="UserInfo" title="Manage">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+            $(document).ready(() =>
+            {
+                function trim(input) {
+                    var text = input.val();
+                    input.val($.trim(text));
+                }
+
+                $('#@Html.IdFor(m => m.Email)').on('click mouseleave blur', function () { trim($(this)); });
+                $('#@Html.IdFor(m => m.FirstName)').on('click mouseleave blur', function () { trim($(this)); });
+                $('#@Html.IdFor(m => m.LastName)').on('click mouseleave blur', function () { trim($(this)); });
+                $('#@Html.IdFor(m => m.Age)').on('click mouseleave blur', function () { trim($(this)); });
+
+            });
+    </script>
+}

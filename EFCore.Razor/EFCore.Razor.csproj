@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <Authors>Jerome Dulay Bautista</Authors>
+    <Description>Razor Pages project UI.</Description>
+    <UserSecretsId>46b22aea-c6b1-4d80-a87e-9ba1205d1867</UserSecretsId>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Serilog" Version="2.8.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.0.0" />
+    <PackageReference Include="Serilog.Sinks.ColoredConsole" Version="3.0.1" />
+    <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\EFCore.Common\EFCore.Common.csproj" />
+    <ProjectReference Include="..\EFCore.ServiceLayer\EFCore.ServiceLayer.csproj" />
+    <ProjectReference Include="..\EFCore.Utilities\EFCore.Utilities.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Components\Login\" />
+    <Folder Include="Components\Register\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyName>EFCore.DataLayer</AssemblyName>
+    <RootNamespace>EFCore.DataLayer</RootNamespace>
+    <Authors>Jerome Dulay Bautista</Authors>
+    <Description>Project for entity framework, contains classes for table creation, database scheme and relationships. It follows repository pattern.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EFCore.Common\EFCore.Common.csproj" />
+    <ProjectReference Include="..\EFCore.Utilities\EFCore.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>

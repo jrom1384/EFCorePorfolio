@@ -1,0 +1,84 @@
+﻿@page "{id}"
+@model EditModel
+@{
+    ViewData["Title"] = "Employee";
+}
+
+<h1 class="text-primary">Employee / Edit</h1>
+<hr />
+@{
+    if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-warning alert-dismissible fade show">
+            <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Warning!</h4>
+            <p>@Model.ErrorMessage</p>
+            <hr>
+            <p class="mb-0">Once you have filled all the details, click on the 'Save' button to continue or 'Back to List'.</p>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    }
+}
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Employee.Id" />
+            <div class="form-group">
+                <label asp-for="Employee.LastName" class="control-label"></label>
+                <input asp-for="Employee.LastName" class="form-control" />
+                <span asp-validation-for="Employee.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.FirstName" class="control-label"></label>
+                <input asp-for="Employee.FirstName" class="form-control" />
+                <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.DateOfBirth" class="control-label"></label>
+                <input asp-for="Employee.DateOfBirth" class="form-control" type="date" />
+                <span asp-validation-for="Employee.DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.Gender" class="control-label"></label>
+                <select asp-for="Employee.Gender" class="form-control" asp-items="@Html.GetEnumSelectList<Gender>()">
+                    <option value="" disabled selected>Select Gender</option>
+                </select>
+                <span asp-validation-for="Employee.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Employee.IsActive" /> @Html.DisplayNameFor(model => model.Employee.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.Department_Id" class="control-label"></label>
+                <select asp-for="Employee.Department_Id" class="form-control" asp-items="@(new SelectList(Model.Departments,"Id","Department", Model.Employee.Department_Id))">
+                    <option value="0" disabled selected>Select Department</option>
+                </select>
+                <span asp-validation-for="Employee.Department_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" /> |
+                <a asp-page="./Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(() => {
+
+            function trim(input) {
+                var text = input.val();
+                input.val($.trim(text));
+            }
+
+            $('#@Html.IdFor(m => m.Employee.FirstName)').on('click mouseleave blur', function () { trim($(this)); })
+            $('#@Html.IdFor(m => m.Employee.LastName)').on('click mouseleave blur', function () { trim($(this)); })
+
+        });
+    </script>
+}

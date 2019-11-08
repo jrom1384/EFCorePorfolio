@@ -1,0 +1,44 @@
+﻿@model PagingViewComponentModel
+@{
+    if (Model.MatchCount > 0)
+    {
+        <div class="container">
+            <h6 class="text-dark small">@Model.MatchCount item(s) found.</h6>
+        </div>
+    }
+
+    var prevButtonEnabled = Model.HasPreviousPage ? "" : "disabled";
+    var nextButtonEnabled = Model.HasNextPage ? "" : "disabled";
+    var firstPageEnabled = Model.CurrentPageIndex > 1 ? "" : "disabled";
+    var lastPageEnabled = Model.CurrentPageIndex < Model.TotalPages ? "" : "disabled";
+
+    if (Model.MatchCount > Model.PageSize)
+    {
+        <div class="container">
+            <a asp-all-route-data="@Model.RouteData" asp-route-CurrentPageIndex="1" class="btn btn-primary @firstPageEnabled">&lt;&lt;</a>
+            <a asp-all-route-data="@Model.RouteData" asp-route-CurrentPageIndex="@(Model.CurrentPageIndex - 1)" class="btn btn-primary @prevButtonEnabled">&lt;</a>
+            @{
+                int pageIndex = 1;
+                while (pageIndex <= Model.TotalPages && pageIndex <= Model.PageIndexViewLimit)
+                {
+                    <a asp-all-route-data="@Model.RouteData" asp-route-CurrentPageIndex="@pageIndex" class="btn btn-primary @(Model.CurrentPageIndex == pageIndex? "active": "")">@pageIndex</a>
+                    pageIndex++;
+                }
+
+                if (Model.TotalPages > Model.PageIndexViewLimit)
+                {
+                    <span class="text-dark align-bottom">...</span>
+                }
+            }
+            <a asp-all-route-data="@Model.RouteData" asp-route-CurrentPageIndex="@(Model.CurrentPageIndex + 1)" class="btn btn-primary @nextButtonEnabled">&gt;</a>
+            <a asp-all-route-data="@Model.RouteData" asp-route-CurrentPageIndex="@Model.TotalPages" class="btn btn-primary @lastPageEnabled">&gt;&gt;</a>
+        </div>
+    }
+    else if (Model.MatchCount == 0)
+    {
+        <div class="container">
+            <h6 class="text-dark small">No items found.</h6>
+        </div>
+        <hr />
+    }
+}

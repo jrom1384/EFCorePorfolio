@@ -1,0 +1,40 @@
+﻿@page
+@model SuccessModel
+@{
+    ViewData["Title"] = "Role";
+}
+
+<h1 class="text-primary">Role / @Model.SaveMode.ToString() </h1>
+<hr />
+<div class="alert alert-success alert-dismissible fade show">
+    <h4 class="alert-heading"><i class="far fa-check-circle"></i> Success!</h4>
+    <p>@Model.Message</p>
+    <hr>
+    @if (Model.SaveMode == SaveMode.Delete)
+    {
+        <p class="mb-0">Click 'Back to List'.</p>
+    }
+    else
+    {
+        <p class="mb-0">To modify click the 'Edit' button or 'Back to List'.</p>
+    }
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+</div>
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Role.Role)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Role.Role)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    @if (Model.SaveMode != SaveMode.Delete)
+    {
+        <a asp-page="./Edit" asp-route-id="@Model.Role.Id">Edit</a> <text>|</text>
+    }
+    <a asp-page="./Index">Back to List</a>
+</div>

@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Authors>Jerome Dulay Bautista</Authors>
+    <Description>Data transfer object, information model to be used from Service Layer to API, MVC and Razor.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EFCore.Common\EFCore.Common.csproj" />
+  </ItemGroup>
+
+</Project>

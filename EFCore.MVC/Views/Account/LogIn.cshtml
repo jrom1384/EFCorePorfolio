@@ -1,0 +1,90 @@
+﻿@model LoginVM
+@inject Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider schemeProvider
+@{
+    ViewData["Title"] = "Welcome to EFCore MVC! Please login";
+}
+
+<h5 class="text-primary">Welcome to EFCore MVC! Please login.</h5>
+<form asp-action="LogIn">
+    <div class="row">
+        <div class="col-md-4 border-top">
+            <br />
+            <p>Use a local account to login.</p>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" type="password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" asp-for="RememberMe" class="form-check-inline" />Remember Me?
+            </div>
+            <div class="form-group">
+                <input type="submit" value="LogIn" class="btn btn-primary" />
+            </div>
+            <div class="form-group">
+                <a asp-controller="Account" asp-action="Register">Register as a new user?</a>
+            </div>
+            <div class="form-group">
+                <a asp-controller="Account" asp-action="ForgotPassword">Forgot your password?</a>
+            </div>
+        </div>
+
+        <div class="col-md-4 border-top border-left">
+            <br />
+            <p>Or, login with</p>
+            <div>
+                @foreach (var scheme in await schemeProvider.GetRequestHandlerSchemesAsync())
+                {
+                    @if (scheme.Name.Equals("Facebook"))
+                    {
+                        <a asp-action="ExternalLogin" asp-route-id="@scheme.Name" style="background-color: #3b5998; color: white; font-weight: 600; padding: 10px 16px; font-family: Helvetica; -moz-osx-font-smoothing: grayscale; -webkit-font-smoothing: antialiased;"> <i class="fab fa-facebook"></i>&nbsp; @scheme.Name</a>
+                    }
+                    else
+                    {
+                        <a asp-action="ExternalLogin" asp-route-id="@scheme.Name" class="btn btn-secondary"><i class="fab fa-facebook"></i>&nbsp; @scheme.Name</a>
+                    }
+                }
+            </div>
+        </div>
+
+        @*@{
+                if (Model.ExternalLogin.Count > 0)
+                {
+                    <div class="col-md-4">
+                        <form method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+                            <div>
+                                @foreach (var provider in Model.ExternalLogin)
+                                {
+                                    <button type="submit" class="btn btn-secondary" name="provider" value="@provider.Name">
+                                        @provider.DisplayName
+                                    </button>
+                                }
+                            </div>
+                        </form>
+                    </div>
+                }
+            }*@
+
+    </div>
+</form>
+
+@section Scripts{
+    <script>
+            $(document).ready(() =>
+            {
+                function trim(input) {
+                    var text = input.val();
+                    input.val($.trim(text));
+                }
+
+                $('#@Html.IdFor(m => m.Email)').on('click mouseleave blur', function () { trim($(this)); });
+
+            });
+    </script>
+}
