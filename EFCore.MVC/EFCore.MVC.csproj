@@ -8,6 +8,13 @@
     <Description>Model View Controller project UI</Description>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20191108034918_InitialCommit.cs" />
+    <Compile Remove="Migrations\20191108034918_InitialCommit.Designer.cs" />
+    <Compile Remove="Migrations\20191108044939_InitialCommit.cs" />
+    <Compile Remove="Migrations\20191108044939_InitialCommit.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
@@ -25,6 +32,11 @@
   <ItemGroup>
     <ProjectReference Include="..\EFCore.DTO\EFCore.DTO.csproj" />
     <ProjectReference Include="..\EFCore.ServiceLayer\EFCore.ServiceLayer.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 

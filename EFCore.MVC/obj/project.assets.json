@@ -13552,11 +13552,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.MVC\\EFCore.MVC.csproj",
+      "projectUniqueName": "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.MVC\\EFCore.MVC.csproj",
       "projectName": "EFCore.MVC",
-      "projectPath": "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.MVC\\EFCore.MVC.csproj",
+      "projectPath": "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.MVC\\EFCore.MVC.csproj",
       "packagesPath": "C:\\Users\\jrom1384\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.MVC\\obj\\",
+      "outputPath": "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.MVC\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -13575,11 +13575,11 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.DTO\\EFCore.DTO.csproj": {
-              "projectPath": "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.DTO\\EFCore.DTO.csproj"
+            "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.DTO\\EFCore.DTO.csproj": {
+              "projectPath": "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.DTO\\EFCore.DTO.csproj"
             },
-            "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.ServiceLayer\\EFCore.ServiceLayer.csproj": {
-              "projectPath": "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.ServiceLayer\\EFCore.ServiceLayer.csproj"
+            "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.ServiceLayer\\EFCore.ServiceLayer.csproj": {
+              "projectPath": "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.ServiceLayer\\EFCore.ServiceLayer.csproj"
             }
           }
         }

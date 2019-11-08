@@ -4871,11 +4871,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.DTO\\EFCore.DTO.csproj",
+      "projectUniqueName": "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.DTO\\EFCore.DTO.csproj",
       "projectName": "EFCore.DTO",
-      "projectPath": "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.DTO\\EFCore.DTO.csproj",
+      "projectPath": "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.DTO\\EFCore.DTO.csproj",
       "packagesPath": "C:\\Users\\jrom1384\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.DTO\\obj\\",
+      "outputPath": "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.DTO\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -4894,8 +4894,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.Common\\EFCore.Common.csproj": {
-              "projectPath": "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.Common\\EFCore.Common.csproj"
+            "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.Common\\EFCore.Common.csproj": {
+              "projectPath": "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.Common\\EFCore.Common.csproj"
             }
           }
         }

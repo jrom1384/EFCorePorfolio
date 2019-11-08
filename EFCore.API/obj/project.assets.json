@@ -13662,11 +13662,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.API\\EFCore.API.csproj",
+      "projectUniqueName": "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.API\\EFCore.API.csproj",
       "projectName": "EFCore.API",
-      "projectPath": "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.API\\EFCore.API.csproj",
+      "projectPath": "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.API\\EFCore.API.csproj",
       "packagesPath": "C:\\Users\\jrom1384\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.API\\obj\\",
+      "outputPath": "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -13685,17 +13685,17 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.Common\\EFCore.Common.csproj": {
-              "projectPath": "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.Common\\EFCore.Common.csproj"
+            "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.Common\\EFCore.Common.csproj": {
+              "projectPath": "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.Common\\EFCore.Common.csproj"
             },
-            "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.DTO\\EFCore.DTO.csproj": {
-              "projectPath": "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.DTO\\EFCore.DTO.csproj"
+            "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.DTO\\EFCore.DTO.csproj": {
+              "projectPath": "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.DTO\\EFCore.DTO.csproj"
             },
-            "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.ServiceLayer\\EFCore.ServiceLayer.csproj": {
-              "projectPath": "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.ServiceLayer\\EFCore.ServiceLayer.csproj"
+            "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.ServiceLayer\\EFCore.ServiceLayer.csproj": {
+              "projectPath": "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.ServiceLayer\\EFCore.ServiceLayer.csproj"
             },
-            "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.Utilities\\EFCore.Utilities.csproj": {
-              "projectPath": "C:\\Users\\jrom1384\\source\\repos\\EFCorePortfolio\\EFCore.Utilities\\EFCore.Utilities.csproj"
+            "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.Utilities\\EFCore.Utilities.csproj": {
+              "projectPath": "C:\\Users\\jrom1384\\Documents\\GitHub\\EFCorePorfolio\\EFCore.Utilities\\EFCore.Utilities.csproj"
             }
           }
         }
